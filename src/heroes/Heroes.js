@@ -1,0 +1,76 @@
+import React from 'react';
+import './heroes.css';
+
+export default class Heroes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {heroes: [], heroName: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.getHeroes();
+  }
+
+  componentDidUpdate() {
+    this.getHeroes();
+  }
+
+  getHeroes() {
+    this.props.heroService.getHeroes().then(response => this.setState({heroes: response}));
+  }
+
+  add(name) {
+    name = name.trim();
+    if (!name) return;
+
+    this.props.heroService.addHero({name}).then(response => {
+      const heroes = this.state.heroes;
+      heroes.push(response);
+      this.setState({heroes, heroName: ''});
+    });
+  }
+
+  delete(hero) {
+    const heroes = this.state.heroes.filter(h => h !== hero);
+    this.props.heroService.deleteHero(hero).then(() => this.setState({heroes}));
+  }
+
+  handleChange(event) {
+    this.setState({heroName: event.target.value});
+  }
+
+  render() {
+    const heroes = [];
+    for (let hero of this.state.heroes) {
+      heroes.push(
+        <li key={hero.id}>
+          <a href={'/detail/' + hero.id}>
+            <span className="badge">{hero.id}</span> {hero.name}
+          </a>
+          <button className="heroes-btn delete" title="delete hero" onClick={() => this.delete(hero)}>
+            {' '}
+            x
+          </button>
+        </li>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        <div>
+          <label>
+            Hero name: <input onChange={this.handleChange} value={this.state.heroName} />
+          </label>
+          <button className="heroes-btn" onClick={() => this.add(this.state.heroName)}>
+            add
+          </button>
+        </div>
+        <h2>My Heroes</h2>
+        <ul className="heroes">{heroes}</ul>
+      </React.Fragment>
+    );
+  }
+}
