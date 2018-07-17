@@ -10,6 +10,9 @@
   "devDependencies": {
     "react-scripts": "1.1.4"
   },
+  "peerDependencies": {
+    "json-server": "0.14.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
