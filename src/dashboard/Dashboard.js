@@ -9,11 +9,7 @@ export default class Dashboard extends React.Component {
     this.state = {heroes: []};
   }
 
-  componentDidMount() {
-    this.getHeroes();
-  }
-
-  componentDidUpdate() {
+  componentWillMount() {
     this.getHeroes();
   }
 
@@ -37,7 +33,7 @@ export default class Dashboard extends React.Component {
       <React.Fragment>
         <h3 className="dashboard-title">Top Heroes</h3>
         <div className="grid grid-pad">{heroes}</div>
-        <HeroSearch />
+        <HeroSearch heroService={this.props.heroService} />
       </React.Fragment>
     );
   }

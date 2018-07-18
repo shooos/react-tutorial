@@ -13,7 +13,7 @@ export default class HeroDetail extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getHero();
   }
 
@@ -30,7 +30,7 @@ export default class HeroDetail extends React.Component {
   }
 
   save() {
-    this.props.heroService.updateHero(this.state.hero).then(() => this.goBack());
+    this.props.heroService.updateHero(this.state.hero).then(() => this.props.history.push('/dashboard'));
   }
 
   handleChange(event) {

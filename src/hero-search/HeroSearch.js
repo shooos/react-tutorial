@@ -1,19 +1,17 @@
 import React from 'react';
-import HeroService from '../hero-service';
 import './hero-search.css';
 
 export default class HeroSearch extends React.Component {
   constructor(props) {
     super(props);
 
-    this.heroService = new HeroService();
     this.state = {searchTerms: []};
     this.searchHeroes = this.searchHeroes.bind(this);
   }
 
   searchHeroes(event) {
     const name = event.target.value;
-    this.heroService.searchHeroes(name).then(responses => this.setState({searchTerms: responses}));
+    this.props.heroService.searchHeroes(name).then(responses => this.setState({searchTerms: responses}));
   }
 
   render() {

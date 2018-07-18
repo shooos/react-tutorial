@@ -10,11 +10,7 @@ export default class Heroes extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    this.getHeroes();
-  }
-
-  componentDidUpdate() {
+  componentWillMount() {
     this.getHeroes();
   }
 
