@@ -1,4 +1,5 @@
 import React from 'react';
+import './messages.css';
 
 export default class Messages extends React.Component {
   render() {
@@ -8,9 +9,9 @@ export default class Messages extends React.Component {
     });
 
     return this.props.messageService.messages.length ? (
-      <div>
+      <div className="messages">
         <h2>Messages</h2>
-        <button className="clear" onClick={this.props.messageService.clear}>
+        <button className="clear" onClick={this.props.messageService.clear.bind(this.props.messageService)}>
           clear
         </button>
         {messages}

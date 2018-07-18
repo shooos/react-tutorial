@@ -57,6 +57,7 @@ export default class Heroes extends React.Component {
     return (
       <React.Fragment>
         <div>
+          <h2>My Heroes</h2>
           <label>
             Hero name: <input onChange={this.handleChange} value={this.state.heroName} />
           </label>
@@ -64,7 +65,6 @@ export default class Heroes extends React.Component {
             add
           </button>
         </div>
-        <h2>My Heroes</h2>
         <ul className="heroes">{heroes}</ul>
       </React.Fragment>
     );
