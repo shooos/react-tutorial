@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './dashboard.css';
 import HeroSearch from '../hero-search/HeroSearch';
 
@@ -21,11 +22,11 @@ export default class Dashboard extends React.Component {
     const heroes = [];
     for (let hero of this.state.heroes.slice(1, 5)) {
       heroes.push(
-        <a className="col-1-4" href={'/detail/' + hero.id} key={hero.id}>
+        <Link className="col-1-4" to={`/detail/${hero.id}`} key={hero.id}>
           <div className="module hero">
             <h4>{hero.name}</h4>
           </div>
-        </a>
+        </Link>
       );
     }
 

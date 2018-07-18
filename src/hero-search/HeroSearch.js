@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './hero-search.css';
 
 export default class HeroSearch extends React.Component {
@@ -19,9 +20,9 @@ export default class HeroSearch extends React.Component {
     for (let hero of this.state.searchTerms) {
       heroes.push(
         <li key={hero.id}>
-          <a href={'/detail/' + hero.id} key={hero.id}>
+          <Link to={`/detail/${hero.id}`} key={hero.id}>
             {hero.name}
-          </a>
+          </Link>
         </li>
       );
     }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './heroes.css';
 
 export default class Heroes extends React.Component {
@@ -43,9 +44,9 @@ export default class Heroes extends React.Component {
     for (let hero of this.state.heroes) {
       heroes.push(
         <li key={hero.id}>
-          <a href={'/detail/' + hero.id}>
+          <Link to={`/detail/${hero.id}`}>
             <span className="badge">{hero.id}</span> {hero.name}
-          </a>
+          </Link>
           <button className="heroes-btn delete" title="delete hero" onClick={() => this.delete(hero)}>
             {' '}
             x
