@@ -3,9 +3,8 @@ const PORT = '3001';
 const BASE_URL = `${HOST}:${PORT}/heroes/`;
 
 export default class HeroService {
-  constructor(messageService) {
-    this.messageService = messageService;
-
+  constructor(app) {
+    this.app = app;
     this.log = this.log.bind(this);
   }
 
@@ -54,6 +53,6 @@ export default class HeroService {
   }
 
   log(message) {
-    this.messageService.add(`HeroService: ${message}`);
+    this.app.setState({messages: this.app.state.messages.concat([`HeroService: ${message}`])});
   }
 }
